@@ -164,8 +164,9 @@ string RandomPlayerbotFactory::CreateRandomBotName(uint8 gender)
     }
 
 	fields = result->Fetch();
+	string name = fields[0].GetCppString();
 	delete result;
-    return fields[0].GetString();
+    return name;
 }
 
 
@@ -357,7 +358,8 @@ string RandomPlayerbotFactory::CreateRandomGuildName()
     }
 
     fields = result->Fetch();
-	delete result;
-    return fields[0].GetString();
+    string name = fields[0].GetCppString();
+    delete result;
+    return name;
 }
 
