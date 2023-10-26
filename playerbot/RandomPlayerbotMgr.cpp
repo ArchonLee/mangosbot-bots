@@ -94,7 +94,12 @@ void RandomPlayerbotMgr::UpdateAIInternal(uint32 elapsed)
         ScheduleAttack();
     }
 
-    SetNextCheckDelay(1000 * sPlayerbotAIConfig.randomBotUpdateInterval / (maxAllowedBotCount / sPlayerbotAIConfig.randomBotsPerInterval));
+    if (maxAllowedBotCount / sPlayerbotAIConfig.randomBotsPerInterval == 0) {
+        SetNextCheckDelay(1000 * sPlayerbotAIConfig.randomBotUpdateInterval / 2);
+    }
+    else {
+        SetNextCheckDelay(1000 * sPlayerbotAIConfig.randomBotUpdateInterval / (maxAllowedBotCount / sPlayerbotAIConfig.randomBotsPerInterval));
+    }
 
     list<uint32> bots = GetBots();
     int botCount = bots.size();
@@ -229,7 +234,8 @@ bool RandomPlayerbotMgr::ProcessBot(uint32 bot)
     if (isLogginIn)
         return false;
 
-    if (!player)
+    int maxAllowedBotCount = GetEventValue(0, "bot_count");
+    if (!player && playerBots.size() < maxAllowedBotCount)
     {
         AddPlayerBot(bot, 0);
         SetEventValue(bot, "login", 1, sPlayerbotAIConfig.randomBotUpdateInterval);
