@@ -2,6 +2,7 @@
 
 #include "../Action.h"
 #include "../../PlayerbotAIConfig.h"
+#include "../../PlayerbotAI.h"
 
 namespace ai
 {

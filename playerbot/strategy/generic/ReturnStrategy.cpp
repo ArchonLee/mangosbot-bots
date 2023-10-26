@@ -1,7 +1,6 @@
-#include "ReturnStrategy.h"
-
 #include "botpch.h"
 #include "../../playerbot.h"
+#include "ReturnStrategy.h"
 
 using namespace ai;
 

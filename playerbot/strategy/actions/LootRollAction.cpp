@@ -25,7 +25,7 @@ bool LootRollAction::Execute(Event event)
 
 #ifdef MANGOS
     RollVote vote = ROLL_PASS;
-    vector<Roll*>& rolls = group->GetRolls();
+    vector<Roll*> rolls = group->GetRolls();
     for (vector<Roll*>::iterator i = rolls.begin(); i != rolls.end(); ++i)
     {
         if ((*i)->isValid() && (*i)->lootedTargetGUID == guid && (*i)->itemSlot == slot)
